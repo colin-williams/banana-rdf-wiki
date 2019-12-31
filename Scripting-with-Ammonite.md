@@ -209,13 +209,13 @@ First, let us load a simple Scala wrapper around the Java HTTP library,
 @ interp.load.ivy("org.scalaj" %% "scalaj-http" % "2.3.0")
 ```
 
-We can now start using banana-rdf on real data. One question of interest could be what this `http://bblfish.net/people/henry/card#me` url refers to in the graph above. So let's see what the web tells us.
+We can now start using banana-rdf on real data. One question of interest could be what this `https://bblfish.net/people/henry/card#me` url refers to in the graph above. So let's see what the web tells us.
 
 ```Scala
 @ import scalaj.http._
 import scalaj.http._
-@ val bblUrl = URI("http://bblfish.net/people/henry/card#me")
-bblUrl: Sesame#URI = http://bblfish.net/people/henry/card#me
+@ val bblUrl = URI("https://bblfish.net/people/henry/card#me")
+bblUrl: Sesame#URI = https://bblfish.net/people/henry/card#me
 ```
 
 The HTTP RFC does not allow one to make requests with fragment
@@ -235,7 +235,7 @@ So we remove the fragment before making the HTTP request.
 
 ```Scala
 @ bblUrl.fragmentLess
-res63: Sesame#URI = http://bblfish.net/people/henry/card
+res63: Sesame#URI = https://bblfish.net/people/henry/card
 @ val bblReq = Http( bblUrl.fragmentLess.toString )
 bblReq: HttpRequest = HttpRequest(
   "http://bblfish.net/people/henry/card",
