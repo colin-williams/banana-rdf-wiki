@@ -44,6 +44,7 @@ import coursierapi.MavenRepository
  interp.repositories.update(
    interp.repositories() ::: List(MavenRepository.of("http://bblfish.net/work/repo/snapshots/"))
  )
+import $ivy.`org.w3::banana-sesame:0.8.4-SNAPSHOT`
 ```
 
 those last imports will download a lot of libraries the first time round. Here we are choosing to use the Sesame implementation of banana. You could use another one, such as Jena.  
