@@ -20,11 +20,11 @@ In particular it should prove to be a great tool to start exploring the semantic
 
 ## Ammonite and Banana-RDF
 
-1) Download [Ammonite Shell](http://ammonite.io/#Ammonite-Shell) as described on their documentation page.  For the newly released Ammonite 1.0 (4 July 2017) it is as easy as running the following two lines from the command line
+1) Download [Ammonite Shell](http://ammonite.io/#Ammonite-Shell) as described on their documentation page.  For the newly released Ammonite 2.0.1 it is as easy as running the following two lines from the command line
 
 ```bash
-$ mkdir -p ~/.ammonite && curl -L -o ~/.ammonite/predef.sc https://git.io/vHaKQ
-$ sudo curl -L -o /usr/local/bin/amm https://git.io/vQEhd && sudo chmod +x /usr/local/bin/amm && amm
+mkdir -p ~/.ammonite && curl -L -o ~/.ammonite/predef.sc https://git.io/vHaKQ
+sudo sh -c '(echo "#!/usr/bin/env sh" && curl -L https://github.com/lihaoyi/Ammonite/releases/download/2.0.1/2.12-2.0.1) > /usr/local/bin/amm && chmod +x /usr/local/bin/amm' && amm
 ```
 
    but check the latest on [their excellently documented web site](http://ammonite.io/#Ammonite-Shell) - (and update this wiki if there is a change).   
@@ -40,13 +40,10 @@ $ amm
 3) Import the banana-rdf libraries. To to this run the following at the `@` command prompt, which will be specific to your environment. I have removed the `@` prompt from may of these examples to make copy and pasting easier. After each of these lines you will see a response from the command prompt.
 
 ```Scala
-import coursier.core.Authentication, coursier.MavenRepository
-
-interp.repositories() ++= Seq(MavenRepository(
-  "http://bblfish.net/work/repo/snapshots/"
-  ))
-
-import $ivy.`org.w3::banana-sesame:0.8.4-SNAPSHOT`
+import coursierapi.MavenRepository
+ interp.repositories.update(
+   interp.repositories() ::: List(MavenRepository.of("http://bblfish.net/work/repo/snapshots/"))
+ )
 ```
 
 those last imports will download a lot of libraries the first time round. Here we are choosing to use the Sesame implementation of banana. You could use another one, such as Jena.  
